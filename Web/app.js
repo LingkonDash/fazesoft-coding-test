@@ -14,9 +14,12 @@ app.get('/', (req, res) => {
 
 app.post('api/post', (req, res) => {
   const {title, category} = req.body;
-if(!title || !title.trim(' ') ) {
-
+if(!title || !title.trim(' ') || !category || !CATEGORY.includes(category) ) {
+  res.status(400).json({error: 'please provide all details'})
+return
 }
+
+task.push(req.body)
 })
 
 app.listen(3000, () => {
